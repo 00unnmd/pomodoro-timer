@@ -1,4 +1,14 @@
-.timepicker {
-  display: flex;
-  justify-content: space-around;
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.timepicker {  
+  margin-top: 5vh;
+
+  @include media-breakpoint-up(md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5%;
+    align-items: flex-end;
+  }
 }

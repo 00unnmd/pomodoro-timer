@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import './TimePicker.scss';
 
 const TimePicker = props => {
@@ -30,6 +32,7 @@ const TimePicker = props => {
         defaultValue={props.default}
         step={1}
         onChange={(e) => { setInputVal(e.target.valueAsNumber) }}
+        onInput={(e) => { console.log('on input event') }}
         disabled={props.disabled}
         list={props.title}
       />
@@ -39,3 +42,11 @@ const TimePicker = props => {
 };
 
 export default TimePicker;
+
+TimePicker.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  default: PropTypes.number,
+  disabled: PropTypes.bool,
+}

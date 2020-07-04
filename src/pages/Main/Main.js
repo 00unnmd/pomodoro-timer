@@ -5,7 +5,7 @@ import TimePicker from '../../components/TimePicker/TimePicker';
 
 const WorkBreakPickers = () => {
   return (
-    <div className='timepicker'>
+    <div className='timepicker container'>
       <TimePicker
         title='Время перерыва между рабочими сессиями'
         min={0}
