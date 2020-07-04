@@ -11,7 +11,7 @@ const TimePicker = props => {
     let optionArr = [];
     for (let i = props.min; i <= props.max; i++) {
       optionArr.push(i);
-    }
+    };
 
     return (
       <datalist id={props.title}>
@@ -19,7 +19,7 @@ const TimePicker = props => {
           <option value={item} label={item} key={item}></option>
         ))}
       </datalist>
-    )
+    );
   }
 
   return (
@@ -52,4 +52,4 @@ TimePicker.propTypes = {
   onChange: PropTypes.func.isRequired,
   default: PropTypes.number,
   disabled: PropTypes.bool,
-}
+};
