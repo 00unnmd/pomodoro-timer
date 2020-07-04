@@ -31,8 +31,10 @@ const TimePicker = props => {
         max={props.max}
         defaultValue={props.default}
         step={1}
-        onChange={(e) => { setInputVal(e.target.valueAsNumber) }}
-        onInput={(e) => { console.log('on input event') }}
+        onChange={(e) => {
+          setInputVal(e.target.valueAsNumber);
+          props.onChange(e.target.valueAsNumber);
+        }}
         disabled={props.disabled}
         list={props.title}
       />
@@ -47,6 +49,7 @@ TimePicker.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   default: PropTypes.number,
   disabled: PropTypes.bool,
 }
