@@ -2,9 +2,21 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
-.timepicker {  
-  margin-top: 5vh;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
+  height: calc(100vh - 2rem);
 
+  @include media-breakpoint-up(lg) {
+    margin: 3rem 0 3rem 0;
+    height: calc(100vh - 6rem);
+    justify-content: space-around;
+  }
+}
+
+.timepicker {  
   @include media-breakpoint-up(md) {
     display: grid;
     grid-template-columns: 1fr 1fr;

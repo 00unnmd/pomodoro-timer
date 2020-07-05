@@ -1,0 +1,27 @@
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .timer__count {
+    font-size: 5rem;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 8rem;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 10rem;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 15rem;
+    }
+  }
+  .timer__title {
+    letter-spacing: 3px;
+  }
+}

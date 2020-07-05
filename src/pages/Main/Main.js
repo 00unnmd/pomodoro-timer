@@ -53,7 +53,7 @@ const StartStopButtons = () => {
 
 const Main = () => {
   return (
-    <div className='container'>
+    <div className='container main'>
       <WorkBreakPickers />
       <Timer />
       <StartStopButtons />

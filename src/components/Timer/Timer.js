@@ -1,12 +1,16 @@
 import React from 'react';
 import useTimerControl from '../../hooks/timerControl/useTimerControl';
 
+import './Timer.scss';
+
 const Timer = () => {
-  const { activeTime } = useTimerControl();
+  const { activeTime, cycle } = useTimerControl();
+  const status = cycle === 'work' ? 'Рабочая сессия' : 'Перерыв';
 
   return (
-    <div>
-      <h1>Время {`${activeTime.minutes}:${activeTime.seconds}`}</h1>
+    <div className='timer'>
+      <h1 className='timer__count'>{`${activeTime.minutes}:${activeTime.seconds}`}</h1>
+      <span className='timer__title'>{status}</span>
     </div>
   );
 };
