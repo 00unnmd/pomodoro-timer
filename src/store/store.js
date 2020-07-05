@@ -1,12 +1,10 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 
-import { breakReducer } from './break/reducers';
-import { workReducer } from './work/reducers';
+import { timerReducer } from './timer/reducers';
 
 const rootReducer = combineReducers({
-  break: breakReducer,
-  work: workReducer,
+  timer: timerReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(logger));

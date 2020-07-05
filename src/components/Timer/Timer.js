@@ -1,15 +1,12 @@
 import React from 'react';
-import useBreaktime from '../../hooks/breakTime/useBreakTime';
-import useWorkTime from '../../hooks/workTime/useWorkTime';
+import useTimerControl from '../../hooks/timerControl/useTimerControl';
 
 const Timer = () => {
-  const { breakTime } = useBreaktime();
-  const { workTime } = useWorkTime();
+  const { activeTime } = useTimerControl();
 
   return (
     <div>
-      <h1>Время перерыва {breakTime}</h1>
-      <h1>Время работы {workTime}</h1>
+      <h1>Время {`${activeTime.minutes}:${activeTime.seconds}`}</h1>
     </div>
   );
 };

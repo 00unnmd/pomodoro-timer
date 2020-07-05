@@ -1,6 +1,6 @@
 import React from 'react';
-import useBreakTime from '../../hooks/breakTime/useBreakTime';
-import useWorkTime from '../../hooks/workTime/useWorkTime';
+
+import useTimerControl from '../../hooks/timerControl/useTimerControl';
 
 import TimePicker from '../../components/TimePicker/TimePicker';
 import Timer from '../../components/Timer/Timer';
@@ -8,8 +8,7 @@ import CustomButton from '../../components/CustomButton/CustomButton';
 import './Main.scss';
 
 const WorkBreakPickers = () => {
-  const { saveBreakTime } = useBreakTime();
-  const { saveWorkTime } = useWorkTime();
+  const { isStarted, saveBreakTime, saveWorkTime } = useTimerControl();
 
   return (
     <div className='timepicker'>
@@ -19,6 +18,7 @@ const WorkBreakPickers = () => {
         max={10}
         default={5}
         onChange={saveBreakTime}
+        disabled={isStarted}
       />
       <TimePicker
         title='Время рабочей сессии'
@@ -26,23 +26,26 @@ const WorkBreakPickers = () => {
         max={30}
         default={15}
         onChange={saveWorkTime}
+        disabled={isStarted}
       />
     </div>
   );
 };
 
 const StartStopButtons = () => {
+  const { isPaused, startTimer, pauseTimer, resetTimer } = useTimerControl();
+
   return (
     <div className='custom-button'>
       <CustomButton
         variant='success'
-        title='Старт'
-      //handleOnClick={} start cycle
+        title={isPaused ? 'Старт' : 'Пауза'}
+        handleOnClick={isPaused ? startTimer : pauseTimer}
       />
       <CustomButton
         variant='danger'
         title='Сброс'
-      //handleOnClick={} stop and refresh cycle
+        handleOnClick={resetTimer}
       />
     </div>
   );

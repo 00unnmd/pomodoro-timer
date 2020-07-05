@@ -7,7 +7,7 @@ const CustomButton = (props) => {
     <Button
       variant={props.variant}
       size={props.size ? props.size : 'md'}
-    //onClick={props.handleOnClick()}
+      onClick={() => { props.handleOnClick() }}
     >{props.title}</Button>
   );
 };
