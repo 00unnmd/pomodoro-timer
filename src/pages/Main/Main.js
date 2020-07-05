@@ -5,6 +5,7 @@ import useTimerControl from '../../hooks/timerControl/useTimerControl';
 import TimePicker from '../../components/TimePicker/TimePicker';
 import Timer from '../../components/Timer/Timer';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import Notification from '../../components/Notification/Notification';
 import './Main.scss';
 
 const WorkBreakPickers = () => {
@@ -57,6 +58,7 @@ const Main = () => {
       <WorkBreakPickers />
       <Timer />
       <StartStopButtons />
+      <Notification />
     </div>
   );
 }

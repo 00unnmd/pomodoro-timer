@@ -7,7 +7,8 @@ import {
   timerUpdate,
   breakTimeSaver,
   workTimeSaver,
-  cycleNameUpdate
+  cycleNameUpdate,
+  notificationToggler
 } from '../../store/timer/actions';
 import store from '../../store/store';
 
@@ -18,14 +19,16 @@ const useTimerControl = () => {
     breakTime,
     workTime,
     activeTime,
-    cycle
+    cycle,
+    notificationIsVisible
   } = useSelector(state => ({
     isStarted: state.timer.isStarted,
     isPaused: state.timer.isPaused,
     breakTime: state.timer.breakTime,
     workTime: state.timer.workTime,
     activeTime: state.timer.activeTime,
-    cycle: state.timer.cycle
+    cycle: state.timer.cycle,
+    notificationIsVisible: state.timer.notificationIsVisible
   }));
   const dispatch = useDispatch();
   const intervalId = useRef(null);
@@ -43,17 +46,21 @@ const useTimerControl = () => {
 
         if (upd_cycle === 'work') {
           clearInterval(intervalId.current);
-          dispatch(timerUpdate({ minutes: breakTime, seconds: '0' }));
+          dispatch(timerUpdate({ minutes: breakTime, seconds: '00' }));
           dispatch(cycleNameUpdate());
           calculateTimer({ minutes: breakTime, seconds: '00' });
         }
         else {
+          toggleNotification(true);
           resetTimer();
         }
       }
       else {
         duration = moment.duration(duration._milliseconds - interval, 'milliseconds');
-        dispatch(timerUpdate({ minutes: duration._data.minutes, seconds: duration._data.seconds }));
+
+        let minutes = duration._data.minutes < 10 ? `0${duration._data.minutes}` : duration._data.minutes;
+        let seconds = duration._data.seconds < 10 ? `0${duration._data.seconds}` : duration._data.seconds;
+        dispatch(timerUpdate({ minutes: minutes, seconds: seconds }));
       }
     }, interval);
   }
@@ -72,10 +79,16 @@ const useTimerControl = () => {
   }
 
   const saveBreakTime = (time) => {
+    time = time < 10 ? `0${time}` : time;
     dispatch(breakTimeSaver(time));
   }
   const saveWorkTime = (time) => {
+    time = time < 10 ? `0${time}` : time;
     dispatch(workTimeSaver(time));
+  }
+
+  const toggleNotification = (visibility) => {
+    dispatch(notificationToggler(visibility));
   }
 
   return {
@@ -85,11 +98,13 @@ const useTimerControl = () => {
     workTime,
     activeTime,
     cycle,
+    notificationIsVisible,
     startTimer,
     pauseTimer,
     resetTimer,
     saveBreakTime,
-    saveWorkTime
+    saveWorkTime,
+    toggleNotification
   }
 };
 

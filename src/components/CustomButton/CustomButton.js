@@ -8,6 +8,7 @@ const CustomButton = (props) => {
       variant={props.variant}
       size={props.size ? props.size : 'md'}
       onClick={() => { props.handleOnClick() }}
+      className={props.className && props.className}
     >{props.title}</Button>
   );
 };
@@ -19,4 +20,5 @@ CustomButton.propTypes = {
   title: PropTypes.string.isRequired,
   handleOnClick: PropTypes.func.isRequired,
   size: PropTypes.string,
+  className: PropTypes.string
 };

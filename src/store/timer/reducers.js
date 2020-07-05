@@ -4,7 +4,8 @@ import {
   UPDATE_TIME,
   SAVE_BREAK_TIME,
   SAVE_WORK_TIME,
-  UPDATE_CYCLE_NAME
+  UPDATE_CYCLE_NAME,
+  TOGGLE_NOTIFICATION
 } from './actions';
 
 const defaultState = {
@@ -21,6 +22,8 @@ const defaultState = {
   },
 
   cycle: 'work',
+
+  notificationIsVisible: false
 }
 
 export const timerReducer = (state = defaultState, action) => {
@@ -53,26 +56,25 @@ export const timerReducer = (state = defaultState, action) => {
         cycle: defaultState.cycle
       }
     case UPDATE_TIME:
-      let time = action.payload;
       return {
         ...state,
         activeTime: {
-          minutes: time.minutes < 10 ? `0${time.minutes}` : time.minutes,
-          seconds: time.seconds < 10 ? `0${time.seconds}` : time.seconds,
+          minutes: action.payload.minutes,
+          seconds: action.payload.seconds,
         }
       }
     case SAVE_BREAK_TIME:
+      let breakMinutes = action.payload;
       return {
         ...state,
-        breakTime: action.payload
+        breakTime: breakMinutes
       }
     case SAVE_WORK_TIME:
-      let workMinutes = action.payload;
       return {
         ...state,
-        workTime: workMinutes < 10 ? `0${workMinutes}` : workMinutes,
+        workTime: action.payload,
         activeTime: {
-          minutes: workMinutes < 10 ? `0${workMinutes}` : workMinutes,
+          minutes: action.payload,
           seconds: '00'
         }
       }
@@ -80,6 +82,11 @@ export const timerReducer = (state = defaultState, action) => {
       return {
         ...state,
         cycle: 'break',
+      }
+    case TOGGLE_NOTIFICATION:
+      return {
+        ...state,
+        notificationIsVisible: action.payload
       }
     default:
   }

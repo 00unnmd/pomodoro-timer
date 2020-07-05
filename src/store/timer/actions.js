@@ -4,6 +4,7 @@ export const UPDATE_TIME = 'UPDATE_TIME';
 export const SAVE_BREAK_TIME = 'SAVE_BREAK_TIME';
 export const SAVE_WORK_TIME = 'SAVE_WORK_TIME';
 export const UPDATE_CYCLE_NAME = 'UPDATE_CYCLE_NAME';
+export const TOGGLE_NOTIFICATION = 'TOGGLE_NOTIFICATION';
 
 export const timerToggler = (timerIsRunning) => ({
   type: TOGGLE_TIMER,
@@ -31,4 +32,9 @@ export const workTimeSaver = (time) => ({
 
 export const cycleNameUpdate = () => ({
   type: UPDATE_CYCLE_NAME
+})
+
+export const notificationToggler = (notificationIsVisible) => ({
+  type: TOGGLE_NOTIFICATION,
+  payload: notificationIsVisible
 })
